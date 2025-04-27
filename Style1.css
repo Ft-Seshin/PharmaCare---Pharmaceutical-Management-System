@@ -1,0 +1,251 @@
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f5f9ff;
+}
+
+.wrapper {
+    padding: 0 20px;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.row {
+    width: 900px;
+    height: 550px;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+}
+
+.side-image {
+    background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.side-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(43, 88, 118, 0.7);
+}
+
+.logo {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.text {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: #fff;
+    padding: 0 20px;
+}
+
+.text h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.text p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.right {
+    width: 60%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.input-box {
+    width: 100%;
+}
+
+.input-box header {
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #2b5876;
+    font-size: 24px;
+}
+
+.input-field {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input {
+    height: 50px;
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #d1d5db;
+    outline: none;
+    color: #40414a;
+    font-size: 15px;
+    padding: 0 10px;
+    transition: all 0.3s ease;
+}
+
+.input-box .input-field label {
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    color: #6b7280;
+}
+
+.input-field .input:focus ~ label,
+.input-field .input:valid ~ label {
+    top: -10px;
+    font-size: 13px;
+    color: #4e4376;
+}
+
+.input-field .input:focus,
+.input-field .input:valid {
+    border-bottom: 1px solid #4e4376;
+}
+
+.submit {
+    width: 100%;
+    height: 50px;
+    border: none;
+    outline: none;
+    background: linear-gradient(to right, #2b5876, #4e4376);
+    color: white;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.submit:hover {
+    background: linear-gradient(to right, #4e4376, #2b5876);
+    box-shadow: 0 5px 15px rgba(78, 67, 118, 0.3);
+}
+
+.signin {
+    text-align: center;
+    margin-top: 25px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.signin span a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #4e4376;
+    transition: all 0.3s ease;
+}
+
+.signin span a:hover {
+    text-decoration: underline;
+    color: #2b5876;
+}
+
+/* Additional Pharma Elements */
+.pharma-icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.pharma-icon i {
+    font-size: 40px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 768px) {
+    .row {
+        flex-direction: column;
+        height: auto;
+        max-width: 450px;
+    }
+    
+    .side-image, .right {
+        width: 100%;
+    }
+    
+    .side-image {
+        padding: 40px 20px;
+        border-radius: 15px 15px 0 0;
+    }
+    
+    .right {
+        padding: 30px;
+    }
+    
+    .logo {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .text h2 {
+        font-size: 22px;
+    }
+    
+    .text p {
+        font-size: 14px;
+    }
+    
+    .input-box header {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.input-box {
+    animation: fadeIn 0.6s ease-out;
+}

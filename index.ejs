@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Pharma Management System</title>
+<script src="https://kit.fontawesome.com/ae52b76e98.js"
+crossorigin="anonymous"></script>
+<link rel="stylesheet" href="P_M1.css">
+<link href=
+"" rel="stylesheet">
+<script
+src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script
+>
+<script>
+$(document).ready(function() {
+function updateClock() {
+var currentTime = new Date();
+var hours = currentTime.getHours();
+var minutes = currentTime.getMinutes();
+var seconds = currentTime.getSeconds();
+// add leading zero to minutes and seconds if they are less than 10
+minutes = (minutes < 10 ? "0" : "") + minutes;
+seconds = (seconds < 10 ? "0" : "") + seconds;
+// set AM or PM
+var ampm = (hours < 12) ? "AM" : "PM";
+// convert to 12-hour format
+hours = (hours > 12) ? hours - 12 : hours;
+hours = (hours == 0) ? 12 : hours;
+// display the time
+var timeString = hours + ":" + minutes + ":" + seconds + " " + ampm;
+$("#clock").html(timeString);
+}
+// update the clock every second
+setInterval(updateClock, 1000);
+});
+</script>
+<style>*{
+margin:0;
+padding: 0;
+list-style: none;
+text-decoration: none;
+box-sizing: border-box;
+font-family: "Roboto",sans-serif;
+overflow-x: hidden;
+overflow-y: hidden;
+}
+body{
+background: #fff;
+}
+.wrapper .sidenav .title{
+color: #fff;
+font-size: 25px;
+padding: 25px 20px;
+text-transform: uppercase;
+font-weight: 900;
+}
+.wrapper .sidenav .title span{
+color: #4CCEE8;
+}
+.wrapper .sidenav{
+z-index: 1;
+background: #2f323a;
+position: fixed;
+top: px;
+width:250px;
+height: 6000px;;
+overflow-y: auto;
+}
+.wrapper .sidenav .sidebar-menu{
+overflow: hidden;
+}
+.wrapper .sidenav .sidebar-menu .item{
+width: 250px;
+overflow: hidden;
+}
+.wrapper .sidenav .sidebar-menu .item .menu-btn{
+display:block;
+color:#fff;
+position: relative;
+padding: 25px 20px;
+transition: 0.3s;
+transition-property: color;
+}
+.wrapper .sidenav .sidebar-menu .item .menu-btn:hover{
+color:#4ccee8;
+}
+.wrapper .sidenav .sidebar-menu .item .menu-btn i{
+margin-right: 20px;
+}
+.wrapper .sidenav .sidebar-menu .item .menu-btn .drop-down{
+float:right;
+font-size:20px;
+margin-top:3px;
+}
+.wrapper .sidenav .sidebar-menu .item .sub-menu{
+background: #3498db;
+overflow: hidden;
+max-height: 0;
+transition: 0.3s;
+transition-property: background, max-height;
+}
+.wrapper .sidenav .sidebar-menu .item .sub-menu a{
+display: block;
+position:relative;
+color:#fff;
+white-space: nowrap;
+font-size: 15px;
+padding: 20px;
+border-bottom: 1px solid#8FC5E9;
+transition: 0.3s;
+transition-property: background;
+}
+.wrapper .sidenav .sidebar-menu .item .sub-menu a:hover{
+background: #55b1f0;
+}
+.wrapper .sidenav .sidebar-menu .item .sub-menu i{
+padding-right: 20px;
+font-size: 10px;
+}
+.wrapper .sidenav .sidebar-menu .item:target .sub-menu{
+max-height: 500px;
+}
+.wrapper .social-media a{
+margin: 0 10px;
+background-color: #575051;
+border-radius: 5px;
+height: 40px;
+width: 40px;
+display: inline-flex;
+align-items: center;
+}
+.wrapper .social-media a:hover{
+transition: 1s;
+transform: rotate(360deg);
+}
+.wrapper .social-media a i{
+color:#fff;
+margin: 0 auto;
+}
+.wrapper .main-content{
+width:(100%-250px);
+margin-left: 250px;
+overflow-x: hidden;
+overflow-y: hidden;
+}
+section{
+height: 100vh;
+padding: 30px;
+}
+#section1{
+background: linear-gradient(to right, #4bc97d, #e378eb);
+}
+#section2{
+background: linear-gradient(to right, #06e2ff, #cc5333);
+}
+#section3{
+background: linear-gradient(to right, #fffbd5, #b20a2c);
+}
+#section4{
+background: linear-gradient(to right, #00b09b, #96c93d);
+}
+#section5{
+background: linear-gradient(to right, #7b31ca, #f9a7a7);
+}
+#section6{
+background: linear-gradient(to right, #94e5f9, #f1ffc0);
+}
+#section7{
+background: linear-gradient(to right, #00f260, #0575e6);
+}
+</style>
+</head>
+<body>
+<nav>
+<ul>
+<li>Welcome<span id="email"></span>!</li>
+</ul>
+</nav>
+<script>
+const cookie = document.cookie.split('; ').find(row =>
+row.startsWith('email='));
+if (cookie) {
+const { email } = JSON.parse(cookie.split('=')[1]);
+document.getElementById('email').textContent = email;
+}
+</script>
+<div class="wrapper">
+<!--side navigation-->
+<div class="sidenav">
+<div class="title"><center>PM
+<span>System</span></center></div>
+<div class="sidebar-menu"><br><br>
+<li class="item" id="profile">
+<a href="/supplierinfo" class="menu-btn">
+<i class="fas fa-user"></i><span>Supplier
+Info</span>
+</a>
+<div class="sub-menu">
+<a href="#"><span>Add New Supplier</span></a>
+<a href="#"><span>Update Supplier</span></a>
+<a href="#"><span>Search Supplier</span></a>
+<a href="#"><span>List of Existing
+Supplier</span></a>
+</div>
+</li>
+<li class="item" id="messages">
+<a href="/customerinfo" class="menu-btn">
+<i class="fas fa-usercircle"></i><span>Customer Info</span>
+</a>
+<div class="sub-menu">
+<a href="#"><span>Add New Customer</span></a>
+<a href="#"><span>Update Customer</span></a>
+<a href="#"><span>Search Customer</span></a>
+<a href="#"><span>List of Existing
+Customer</span></a>
+</div>
+</li>
+<li class="item" id="settings">
+<a href="#section5" class="menu-btn">
+<i class="fas fatablets"></i><span>Medicine</span>
+</a>
+<div class="sub-menu">
+<a href="#"><span>Add</span></a>
+<a href="#"><span>Display</span></a>
+</div>
+</li>
+<li class="item">
+<a href="#section6" class="menu-btn">
+<i class="fas fa-infocircle"></i><span>About</span>
+</a>
+</li>
+<li class="item">
+<a href="/login" class="menu-btn">
+<i class="fas fa-door-open"
+></i><span>Exit</span>
+</a>
+</li><br><br><li> <big><big><center><div
+id="clock" style="color: aliceblue;"></div></center></big></big> <br>
+</li>
+<li class="item">
+<div class="social-media"><center>
+<a href="#"><i class="fa-brands fafacebook"></i></a>
+<a href="#"><i class="fa-brands fatwitter"></i></a>
+<a href="#"><i class="fa-brands fayoutube"></i></a></center>
+</div>
+</li>
+</div>
+</div>
+<div class="main-content">
+<style>
+table,
+table,
+td {
+border: 1px solid black;
+margin: 5%;
+font-family: "Trebuchet MS", Arial, Helvetica,sansserif;
+}
+td {
+padding: 12px;
+padding-bottom: 12px;
+text-align: left;
+color: black;
+}
+th {
+padding-top: 12px;
+padding-bottom: 12px;
+text-align: left;
+background-color: #4CAF50;
+color: white;
+}
+</style>
+<script>
+$(document).ready(function ()
+{$("#submit1").click(function () {
+details1 = [
+{
+"student_name": $("#student_name").val(),
+"dob":
+{
+"date": $("#date").val(),
+"month": $("#month").val(),
+"year": $("#year").val()
+},
+"blood_group": $("#blood_group").val(),
+"emailid": $("#emailid").val(),
+"phone":
+{
+"mobile_number": $("#mobile_number").val(),
+},
+"address":
+{
+"place_name": $("#place_name").val(),
+},
+}
+];
+var tbl = $("<table/>").attr("id", "mytable");
+$("#div1").append(tbl);
+for (var i = 0; i < details1.length; i++) {
+var tr = "<tr>";
+var td1 = "<td>" + details1[i]["student_name"] +
+"</td>";
+var td2 = "<td>" + details1[i]["dob"]["date"] +
+"/" + details1[i]["dob"]["month"]+ "/" + details1[i]["dob"]["year"] + "</td>";
+var td3 = "<td>" + details1[i]["blood_group"] +
+"</td>";
+var td4 = "<td>" + details1[i]["emailid"] +
+"</td>";
+var td6 = "<td>" +
+details1[i]["phone"]["mobile_number"] + "</td>";
+var td5 = "<td>" +
+details1[i]["address"]["place_name"] + "</td>";
+$("#mytable").append(tr + td1 + td2 + td3 + td4 +
+td5 + td6);
+}
+});
+$("#submit2").click(function () {
+details = [
+{
+"student_name": $("#student_name").val(),
+"dob":
+{
+"date": $("#date").val(),
+"month": $("#month").val(),
+"year": $("#year").val()
+},
+"blood_group": $("#blood_group").val(),
+"emailid": $("#emailid").val(),
+"phone":
+{
+"mobile_number": $("#mobile_number").val(),
+},
+"address":
+{
+"place_name": $("#place_name").val(),
+},
+}
+];
+var tbl = $("<table/>").attr("id", "mytable");
+$("#div2").append(tbl);
+for (var i = 0; i < details.length; i++) {
+var tr = "<tr>";
+var td1 = "<td>" + details[i]["student_name"] +
+"</td>";
+var td2 = "<td>" + details[i]["dob"]["date"] + "/"
++ details[i]["dob"]["month"]+ "/" + details[i]["dob"]["year"] + "</td>";
+var td3 = "<td>" + details[i]["blood_group"] +
+"</td>";
+var td4 = "<td>" + details[i]["emailid"] +
+"</td>";
+var td6 = "<td>" +
+details[i]["phone"]["mobile_number"] + "</td>";
+var td5 = "<td>" +
+details[i]["address"]["place_name"] + "</td>";
+$("#mytable").append(tr + td1 + td2 + td3 + td4 +
+td5 + td6);
+}
+});
+}); </script>
+<section id="section1">
+<center><h1>THE PHARMA MANAGAMENT
+SYSTEM</h1></center><br><hr><br> <big> The pharma management system is a
+software solution designed to streamline the operations of pharmaceutical
+companies,
+including managing inventory, sales, purchases,
+customer data, and employee information.
+It provides a centralized platform for the
+organization and management of data and processes,
+enabling better decision-making and faster
+response times. The system helps companies to maintain compliance
+with industry regulations and standards, reducing
+the risk of errors and improving overall efficiency.
+This abstract provides a brief overview of the
+features and benefits of the pharma management system,
+highlighting its role in improving the management
+of pharmaceutical operations.</big>
+</section>
+<section id="section5">
+<style>
+.container{overflow: hidden}
+.tab{float: left;}
+.tab-2{margin-left: 50px}
+.tab-2 input{display: block;margin-bottom: 10px}
+tr{transition:all .25s ease-in-out}
+tr:hover{background-color:#EEE;cursor: pointer}
+</style>
+<div class="container">
+<div class="tab tab-1">
+<table id="table" border="1">
+<tr>
+<th>Name</th>
+<th>Company name</th>
+<th>ID</th>
+<th>Quantity</th>
+<th>Price</th>
+</tr>
+<tr>
+<td>A1</td>
+<td>B1</td>
+<td>1</td>
+<td>20</td>
+<td>120</td>
+</tr>
+<tr>
+<td>A3</td>
+<td>B3</td>
+<td>2</td>
+<td>40</td>
+<td>150</td>
+</tr>
+</table>
+</div>
+<div class="tab tab-2">
+Name: <input type="text" name="name" id="name"><br>
+Company name: <input type="text" name="city" id="city"><br>
+ID: <input type="number" name="nid" id="nid"><br>
+Quantity: <input type="text" name="email" id="email"><br>
+Price: <input type="text" name="cno" id="cno"><br>
+<button onclick=
+"addHtmlTableRow();">Add</button>
+<button onclick=
+"editHtmlTbleSelectedRow();">Edit</button>
+<button onclick=
+"removeSelectedRow();">Remove</button>
+</div>
+</div>
+<script>
+var rIndex,
+table = document.getElementById("table");
+function checkEmptyInput() {
+var isEmpty = false,
+name = document.getElementById("name").value,
+city = document.getElementById("city").value,
+nid = document.getElementById("nid").value,
+email = document.getElementById("email").value,
+cno = document.getElementById("cno").value;
+if (name ===
+"") {
+alert("Name cannot be empty");
+isEmpty = true;
+} else if (city ===
+"") {
+alert("Company cannot be empty");
+isEmpty = true;
+} else if (nid ===
+"") {
+alert("ID cannot be empty");
+isEmpty = true;
+} else if (email ===
+"") {
+alert("quantity cannot be empty");
+isEmpty = true;
+} else if (cno ===
+"") {
+alert("price cannot be empty");
+isEmpty = true;
+}
+return isEmpty;
+}
+function addHtmlTableRow() {
+if (!checkEmptyInput()) {
+var newRow = table.insertRow(table.length),
+cell1 = newRow.insertCell(0),
+cell2 = newRow.insertCell(1),
+cell3 = newRow.insertCell(2),
+cell4 = newRow.insertCell(3),
+cell5 = newRow.insertCell(4),
+name = document.getElementById("name").value,
+city = document.getElementById("city").value,
+nid = document.getElementById("nid").value,
+email = document.getElementById("email").value,
+cno = document.getElementById("cno").value;
+cell1.innerHTML = name;
+cell2.innerHTML = city;
+cell3.innerHTML = nid;
+cell4.innerHTML = email;
+cell5.innerHTML = cno;
+selectedRowToInput();
+}
+}
+function selectedRowToInput() {
+for (var i = 1; i < table.rows.length; i++) {
+table.rows[i].onclick = function () {
+rIndex = this.rowIndex;
+document.getElementById("name").value = this.cells[0].innerHTML;
+document.getElementById("city").value = this.cells[1].innerHTML;
+document.getElementById("nid").value = this.cells[2].innerHTML;
+document.getElementById("email").value = this.cells[3].innerHTML;
+document.getElementById("cno").value = this.cells[4].innerHTML;
+};
+}
+}
+function editHtmlTbleSelectedRow() {
+var name = document.getElementById("name").value,
+city = document.getElementById("city").value,
+nid = document.getElementById("nid").value,
+email = document.getElementById("email").value,
+cno = document.getElementById("cno").value;
+if (!checkEmptyInput()) {
+table.rows[rIndex].cells[0].innerHTML = name;
+table.rows[rIndex].cells[1].innerHTML = city;
+table.rows[rIndex].cells[2].innerHTML = nid;
+table.rows[rIndex].cells[3].innerHTML = email;
+table.rows[rIndex].cells[4].innerHTML = cno;
+}
+}
+function removeSelectedRow() {
+if (rIndex > 0) {
+table.deleteRow(rIndex);
+document.getElementById("name").value =
+"";
+document.getElementById("city").value =
+"";
+document.getElementById("nid").value =
+"";
+document.getElementById("email").value =
+"";
+document.getElementById("cno").value =
+"";
+}
+}
+</script>
+</section>
+<section id="section6"><center>****PHARMA STORE
+*****</center><br>
+=> This Project Is About Medical Store <br>
+>> In This Project we Can Add Medicine Customer
+Supplier Details <br>
+>> We Can Modifed & Delete Existing Record <br>
+>> We Can Also Search Medicine Customer, Supplier
+Details <br>
+>>It's Helpfull For Display Stock Of Medicine
+</section>
+<section id="section4"></section>
+<section id="section7"></section>
+</div>
+</div>
+</body>
+</html>

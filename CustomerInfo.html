@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pharma Supplier Information</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style> 
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .input-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        
+        .input-table td {
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .input-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .input-table tr:hover {
+            background-color: #f1f8fe;
+        }
+        
+        input[type="text"], 
+        input[type="number"],
+        input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        input[type="text"]:focus, 
+        input[type="number"]:focus,
+        input[type="email"]:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+        }
+        
+        .dob-inputs {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .dob-inputs input {
+            flex: 1;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 5px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        #submit {
+            background-color: #27ae60;
+        }
+        
+        #submit:hover {
+            background-color: #219653;
+        }
+        
+        .button-container {
+            text-align: center;
+        }
+        
+        #mytable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        #mytable th {
+            background-color: #3498db;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        #mytable td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+        
+        #mytable tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        #mytable tr:hover {
+            background-color: #f1f8fe;
+        }
+        
+        .required:after {
+            content: " *";
+            color: #e74c3c;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .dob-inputs {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            button {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pharmaceutical Customer Information</h1>
+        
+        <table class="input-table">
+            <tr>
+                <td class="required">Customer Name</td>
+                <td><input type="text" id="student_name" placeholder="Enter supplier name" required></td>
+            </tr>
+            <tr>
+                <td>Blood Group</td>
+                <td><input type="text" id="blood_group" placeholder="Enter blood group"></td>
+            </tr>
+            <tr>
+                <td class="required">Date of Birth</td>
+                <td>
+                    <div class="dob-inputs">
+                        <input type="number" id="date" placeholder="DD" min="1" max="31" required>
+                        <input type="number" id="month" placeholder="MM" min="1" max="12" required>
+                        <input type="number" id="year" placeholder="YYYY" min="1900" max="2023" required>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="required">Contact No</td>
+                <td><input type="number" id="mobile_number" placeholder="Enter mobile number" required></td>
+            </tr>
+            <tr>
+                <td class="required">Email ID</td>
+                <td><input type="email" id="email" placeholder="Enter email address" required></td>
+            </tr>
+            <tr>
+                <td class="required">City</td>
+                <td><input type="text" id="place_name" placeholder="Enter city" required></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="button-container">
+                    <button type="button" id="submit" name="submitbutton">Submit</button>
+                    <button type="button" class="submit" onclick="location.href='demo1.html'" target="self">Menu</button>
+                </td>
+            </tr>
+        </table>
+        
+        <div id="div1"></div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#submit").click(function () { 
+                details = [
+                    {
+                        "student_name": $("#student_name").val(), 
+                        "dob": {
+                            "date": $("#date").val(),
+                            "month": $("#month").val(),
+                            "year": $("#year").val()
+                        },
+                        "blood_group": $("#blood_group").val(), 
+                        "email": $("#email").val(),
+                        "phone": {
+                            "mobile_number": $("#mobile_number").val(),
+                        },
+                        "address": {
+                            "place_name": $("#place_name").val(),
+                        }
+                    }
+                ];
+                
+                var tbl = $("<table/>").attr("id", "mytable");
+                var thead = $("<thead/>").appendTo(tbl);
+                var tr = $("<tr/>").appendTo(thead);
+                
+                $("<th/>").text("Supplier Name").appendTo(tr);
+                $("<th/>").text("Date of Birth").appendTo(tr);
+                $("<th/>").text("Blood Group").appendTo(tr);
+                $("<th/>").text("Email").appendTo(tr);
+                $("<th/>").text("City").appendTo(tr);
+                $("<th/>").text("Contact No").appendTo(tr);
+                
+                var tbody = $("<tbody/>").appendTo(tbl);
+                
+                for (var i = 0; i < details.length; i++) {
+                    var tr = $("<tr/>").appendTo(tbody);
+                    $("<td/>").text(details[i]["student_name"]).appendTo(tr);
+                    $("<td/>").text(details[i]["dob"]["date"] + "/" + details[i]["dob"]["month"] + "/" + details[i]["dob"]["year"]).appendTo(tr);
+                    $("<td/>").text(details[i]["blood_group"]).appendTo(tr);
+                    $("<td/>").text(details[i]["email"]).appendTo(tr);
+                    $("<td/>").text(details[i]["address"]["place_name"]).appendTo(tr);
+                    $("<td/>").text(details[i]["phone"]["mobile_number"]).appendTo(tr);
+                }
+                
+                $("#div1").html(tbl);
+            });
+        }); 
+    </script>
+</body>
+</html>

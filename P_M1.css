@@ -1,0 +1,92 @@
+*{
+    margin:0; padding: 0;
+    list-style: none;
+    text-decoration: none; box-sizing: border-box;
+    font-family: "Roboto",sans-serif; overflow-x: hidden;
+    overflow-y: hidden;
+    }
+    body{
+    background: #fff;
+    }
+    .wrapper .sidenav .title{ color: #fff;
+    font-size: 25px; padding: 25px 20px;
+    text-transform: uppercase; font-weight: 900;
+    }
+    .wrapper .sidenav .title span{ color: #4CCEE8;
+    }
+    .wrapper .sidenav{ z-index: 1;
+    background: #2f323a; position: fixed; top: px;
+    width:250px;
+    height: 6000px;; overflow-y: auto;
+    }
+    .wrapper .sidenav .sidebar-menu{ overflow: hidden;
+    }
+    .wrapper .sidenav .sidebar-menu .item{ width: 250px;
+    overflow: hidden;
+    }
+    .wrapper .sidenav .sidebar-menu .item .menu-btn{ display:block;
+    color:#fff; position: relative; padding: 25px 20px; transition: 0.3s;
+    transition-property: color;
+    }
+    .wrapper .sidenav .sidebar-menu .item .menu-btn:hover{ color:#4ccee8;
+    }
+    .wrapper .sidenav .sidebar-menu .item .menu-btn i{ margin-right: 20px;
+    }
+    .wrapper .sidenav .sidebar-menu .item .menu-btn .drop-down{ float:right;
+    font-size:20px; margin-top:3px;
+    }
+    .wrapper .sidenav .sidebar-menu .item .sub-menu{ background: #3498db;
+    overflow: hidden; max-height: 0; transition: 0.3s;
+    transition-property: background, max-height;
+    }
+    .wrapper .sidenav .sidebar-menu .item .sub-menu a{ display: block;
+    position:relative; color:#fff;
+    white-space: nowrap; font-size: 15px; padding: 20px;
+    border-bottom: 1px solid#8FC5E9; transition: 0.3s;transition-property:
+    background;
+    }
+    .wrapper .sidenav .sidebar-menu .item .sub-menu a:hover{ background: #55b1f0;
+    }
+    .wrapper .sidenav .sidebar-menu .item .sub-menu i{ padding-right: 20px;
+    font-size: 10px;
+    }
+    .wrapper .sidenav .sidebar-menu .item:target .sub-menu{ max-height: 500px;
+    }
+    .wrapper .social-media a{ margin: 0 10px;
+    background-color: #575051; border-radius: 5px; height: 40px;
+    width: 40px;
+    display: inline-flex; align-items: center;
+    }
+    .wrapper .social-media a:hover{ transition: 1s;
+    transform: rotate(360deg);
+    }
+    .wrapper .social-media a i{ color:#fff;
+    margin: 0 auto;
+    }
+    .wrapper .main-content{ width:(100%-250px); margin-left: 250px; overflow-x:
+    hidden; overflow-y: hidden;
+    }
+    section{
+    height: 100vh; padding: 30px;
+    }
+    #section1{
+    background: linear-gradient(to right, #4bc97d, #e378eb);
+    }
+    #section2{
+    background: linear-gradient(to right, #06e2ff, #cc5333);
+    }
+    #section3{
+    background: linear-gradient(to right, #fffbd5, #b20a2c);
+    }
+    #section4{
+    background: linear-gradient(to right, #00b09b, #96c93d);
+    }
+    #section5{
+    background: linear-gradient(to right, #7b31ca, #f9a7a7);
+    }
+    #section6{
+    background: linear-gradient(to right, #94e5f9, #f1ffc0);
+    }
+    #section7{
+    background: linear-gradient(to right, #00f260, #0575e6);
+    }

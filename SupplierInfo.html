@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Supplier Information</title>
+<style> 
+:root {
+  --primary-color: #6a11cb;
+  --secondary-color: #2575fc;
+  --accent-color: #4CAF50;
+  --text-color: #333;
+  --light-text: #fff;
+  --table-header-bg: #4CAF50;
+  --input-border: #ccc;
+  --input-focus: #6a11cb;
+}
+
+body {
+  background: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-color);
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: var(--light-text);
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.input-form {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-form td, .input-form th {
+  padding: 15px;
+  border: 1px solid #ddd;
+}
+
+.input-form tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.input-form tr:hover {
+  background-color: #f1f1f1;
+}
+
+.input-form th {
+  background-color: var(--table-header-bg);
+  color: white;
+  font-weight: 600;
+}
+
+input[type="text"], 
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border 0.3s;
+}
+
+input[type="text"]:focus, 
+input[type="number"]:focus {
+  border-color: var(--input-focus);
+  outline: none;
+  box-shadow: 0 0 5px rgba(106, 17, 203, 0.3);
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+input[type="button"] {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+#submit {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+#submit:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+.submit {
+  background-color: #2575fc;
+  color: white;
+}
+
+.submit:hover {
+  background-color: #1a5cb8;
+  transform: translateY(-2px);
+}
+
+#div1 {
+  margin-top: 30px;
+  overflow-x: auto;
+}
+
+#mytable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#mytable th {
+  background-color: var(--table-header-bg);
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
+
+#mytable td {
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+
+#mytable tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+#mytable tr:hover {
+  background-color: #f1f1f1;
+}
+
+.dob-inputs {
+  display: flex;
+  gap: 5px;
+}
+
+.dob-inputs input {
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+  
+  .input-form td, .input-form th {
+    padding: 10px;
+  }
+  
+  .button-group {
+    flex-direction: column;
+  }
+  
+  .dob-inputs {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1 style="color: black;">Supplier Info</h1>
+  
+  <table class="input-form">
+    <tr>
+      <th width="30%">Supplier Name</th>
+      <td width="70%"><input type="text" id="student_name" placeholder="Enter the name" required></td>
+    </tr>
+    <tr>
+      <th>Blood Group</th>
+      <td><input type="text" id="blood_group" placeholder="Enter Blood group" required></td>
+    </tr>
+    <tr>
+      <th>Date of Birth</th>
+      <td>
+        <div class="dob-inputs">
+          <input type="number" id="date" placeholder="Date" min="1" max="31" required>
+          <input type="number" id="month" placeholder="Month" min="1" max="12" required>
+          <input type="number" id="year" placeholder="Year" min="1900" max="2100" required>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th>Contact No</th>
+      <td><input type="number" id="mobile_number" placeholder="Enter mobile number" required></td>
+    </tr>
+    <tr>
+      <th>Email ID</th>
+      <td><input type="text" id="email" placeholder="Enter the email" required></td>
+    </tr>
+    <tr>
+      <th>City</th>
+      <td><input type="text" id="place_name" placeholder="Enter the city" required></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <div class="button-group">
+          <input type="button" value="Submit" id="submit" name="submitbutton">
+          <input type="button" class="submit" onclick="location.href='demo1.html'" value="Menu">
+        </div>
+      </td>
+    </tr>
+  </table>
+  
+  <p id="display"></p>
+  <div id="div1"></div>
+</div>
+
+<script>
+$(document).ready(function () {
+  $("#submit").click(function () { 
+    details = [
+      {
+        "student_name": $("#student_name").val(), 
+        "dob": {
+          "date": $("#date").val(),
+          "month": $("#month").val(),
+          "year": $("#year").val()
+        },
+        "blood_group": $("#blood_group").val(), 
+        "email": $("#email").val(),
+        "phone": {
+          "mobile_number": $("#mobile_number").val(),
+        },
+        "address": {
+          "place_name": $("#place_name").val(),
+        }
+      }
+    ];
+    
+    // Create table if it doesn't exist
+    if ($("#mytable").length === 0) {
+      var tbl = $("<table/>").attr("id", "mytable");
+      var header = `<thead><tr>
+        <th>Supplier Name</th>
+        <th>Date of Birth</th>
+        <th>Blood Group</th>
+        <th>Email</th>
+        <th>City</th>
+        <th>Contact No</th>
+      </tr></thead><tbody></tbody>`;
+      tbl.append(header);
+      $("#div1").append(tbl);
+    }
+    
+    // Add new row to table body
+    var row = `<tr>
+      <td>${details[0]["student_name"]}</td>
+      <td>${details[0]["dob"]["date"]}/${details[0]["dob"]["month"]}/${details[0]["dob"]["year"]}</td>
+      <td>${details[0]["blood_group"]}</td>
+      <td>${details[0]["email"]}</td>
+      <td>${details[0]["address"]["place_name"]}</td>
+      <td>${details[0]["phone"]["mobile_number"]}</td>
+    </tr>`;
+    
+    $("#mytable tbody").append(row);
+    
+    // Clear form inputs
+    $("input[type='text'], input[type='number']").val("");
+  });
+}); 
+</script>
+</body>
+</html>
