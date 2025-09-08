@@ -2,105 +2,176 @@
 <html lang="en" ng-app="formvalidation">
 <head>
     <meta charset="utf-8">
-    <title>AngularJS Form Validation</title>
+    <title>Register - PharmaCare</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <style type="text/css">
-        .errortext {
-            color: red;
+        :root{
+            --primary:#2563eb; --primary-600:#1d4ed8; --accent:#10b981; --danger:#ef4444; --ring: rgba(37,99,235,.35);
+        }
+        .errortext { color: #e11d48; }
+        /* Page background */
+        body {
+            color: #0f172a;
+            background-color: #f8fafc;
+            background-image: linear-gradient(135deg, rgba(2,6,23,.45), rgba(2,6,23,.15)), url("https://media.licdn.com/dms/image/v2/C5612AQErI_dzF6kiOw/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1520078036828?e=2147483647&v=beta&t=flEQ7VzkmOobhhKFCs8XyY6um54kIN_pPwuAbpo8Vdk");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 24px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        /* Subtle decorative blobs */
+        body::before, body::after{
+            content: "";
+            position: fixed;
+            width: 380px; height: 380px;
+            border-radius: 50%;
+            filter: blur(50px);
+            opacity: .25;
+            z-index: 0;
+            pointer-events: none;
+        }
+        body::before{ top: -80px; right: -80px; background: #c7d2fe; }
+        body::after{ bottom: -80px; left: -80px; background: #99f6e4; }
+        /* Center card */
+        .page-wrap { min-height: calc(100vh - 48px); display:flex; align-items:center; justify-content:center; position: relative; z-index: 1; }
+        .signup-form { width: 520px; max-width: 92vw; margin: 0 auto; padding: 0; }
+        .card { background: rgba(255,255,255,.9); backdrop-filter: blur(8px); border-radius: 14px; border:1px solid #e5e7eb; box-shadow: 0 24px 48px rgba(2,6,23,.16); padding: 28px; }
+
+        /* Headings */
+        .signup-form h2 { color: #0f172a; margin: 0 0 8px; position: relative; text-align: center; font-weight: 800; }
+        .signup-form .hint-text { color: #475569; margin-bottom: 20px; text-align: center; }
+
+        /* Inputs */
+        .form-control { height: 42px; box-shadow: none; color: #111827; border-radius: 10px; border:1px solid #e5e7eb; transition: all .15s ease; }
+        .form-control:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--ring); }
+        .form-group label{ font-weight:600; color:#334155; }
+
+        /* Two column spacing */
+        .row .col-xs-6:first-child{ padding-right: 8px; }
+        .row .col-xs-6:last-child{ padding-left: 8px; }
+
+        /* Button */
+        .btn { border-radius: 10px; padding: 10px 16px; font-weight:700; }
+        .btn-success { background-image: linear-gradient(135deg, #3b82f6, #1d4ed8); border:none; box-shadow: 0 12px 22px rgba(37,99,235,.25); transition: transform .15s ease, box-shadow .15s ease; }
+        .btn-success:hover { transform: translateY(-1px); box-shadow: 0 18px 28px rgba(37,99,235,.30); }
+
+        /* Links */
+        .text-center a { color:#1d4ed8; font-weight:700; }
+        .text-center a:hover{ text-decoration: underline; }
+
+        /* Success alert */
+        .alert-success { border-radius: 10px; }
+
+        @media (max-width: 768px) {
+            .signup-form { width: 100%; }
         }
     </style>
 </head>
 <body ng-controller="cntform">
-    <div class="signup-form">
-        <form role="form" name="myForm" novalidate>
-            <h2>Register</h2>
-            <p class="hint-text">Create your account. It's free and only takes a minute.</p>
-            
-            <div class="form-group">
-                <input type="text" class="form-control" name="username" placeholder="Username"
-                       ng-minlength="10" ng-maxlength="30" ng-pattern="/^[a-zA-Z0-9_]*$/" 
-                       ng-model="user.username" required autofocus>
-                <div class="errortext" ng-show="myForm.username.$dirty && myForm.username.$invalid">
-                    <span ng-show="myForm.username.$error.required">Username is required</span>
-                    <span ng-show="myForm.username.$error.minlength">Username must contain at least 10 characters</span>
-                    <span ng-show="myForm.username.$error.maxlength">Username should not be greater than 30 characters</span>
-                    <span ng-show="myForm.username.$error.pattern">Only letters, numbers and underscore allowed</span>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-xs-6">
-                        <input type="text" class="form-control" name="firstname" placeholder="Firstname"
-                               ng-model="user.firstname" required>
-                        <div class="errortext" ng-show="myForm.firstname.$dirty && myForm.firstname.$invalid">
-                            <span ng-show="myForm.firstname.$error.required">Firstname is required</span>
+    <div class="page-wrap">
+        <div class="signup-form">
+            <div class="card">
+                <form role="form" name="myForm" novalidate action="http://localhost:3000/register" method="POST">
+                    <h2>Create your account</h2>
+                    <p class="hint-text">It takes less than a minute.</p>
+                    
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" name="username" id="username" placeholder="Username"
+                               ng-minlength="10" ng-maxlength="30" ng-pattern="/^[a-zA-Z0-9_]*$/" 
+                               ng-model="user.username" required autofocus>
+                        <div class="errortext" ng-show="myForm.username.$dirty && myForm.username.$invalid">
+                            <span ng-show="myForm.username.$error.required">Username is required</span>
+                            <span ng-show="myForm.username.$error.minlength">Username must contain at least 10 characters</span>
+                            <span ng-show="myForm.username.$error.maxlength">Username should not be greater than 30 characters</span>
+                            <span ng-show="myForm.username.$error.pattern">Only letters, numbers and underscore allowed</span>
                         </div>
                     </div>
-                    <div class="col-xs-6">
-                        <input type="text" class="form-control" name="lastname" placeholder="Lastname"
-                               ng-model="user.lastname" required>
-                        <div class="errortext" ng-show="myForm.lastname.$dirty && myForm.lastname.$invalid">
-                            <span ng-show="myForm.lastname.$error.required">Lastname is required</span>
+                    
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label for="firstname">First name</label>
+                                <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Firstname"
+                                       ng-model="user.firstname" required>
+                                <div class="errortext" ng-show="myForm.firstname.$dirty && myForm.firstname.$invalid">
+                                    <span ng-show="myForm.firstname.$error.required">Firstname is required</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <label for="lastname">Last name</label>
+                                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Lastname"
+                                       ng-model="user.lastname" required>
+                                <div class="errortext" ng-show="myForm.lastname.$dirty && myForm.lastname.$invalid">
+                                    <span ng-show="myForm.lastname.$error.required">Lastname is required</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" 
+                               ng-model="user.email" required>
+                        <div class="errortext" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+                            <span ng-show="myForm.email.$error.required">Email is required</span>
+                            <span ng-show="myForm.email.$error.email">Invalid email format</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Password" 
+                               ng-model="user.password" required>
+                        <div class="errortext" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+                            <span ng-show="myForm.password.$error.required">Password is required</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="repassword">Re-type Password</label>
+                        <input type="password" class="form-control" name="repassword" id="repassword" placeholder="Re-type Password" 
+                               ng-model="user.repassword" required compare-to="user.password">
+                        <div class="errortext" ng-show="myForm.repassword.$dirty && (myForm.repassword.$invalid || user.repassword != user.password)">
+                            <span ng-show="myForm.repassword.$error.required">Re-type password is required</span>
+                            <span ng-show="!myForm.repassword.$error.required && user.repassword != user.password">Password did not match</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="terms" ng-model="user.terms" required> 
+                            I accept the <a href="#">Terms of Use</a> & <a href="#">Privacy Policy</a>
+                        </label>
+                        <div class="errortext" ng-show="myForm.terms.$dirty && myForm.terms.$invalid">
+                            <span ng-show="myForm.terms.$error.required">You must accept the terms</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-lg btn-block" 
+                                ng-disabled="myForm.$invalid || user.repassword != user.password">
+                            <span class="glyphicon glyphicon-check"></span> Register Now
+                        </button>
+                    </div>
+                    
+                    <div class="alert alert-success text-center" ng-show="valid">
+                        <button type="button" class="close" ng-click="close()">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <span class="glyphicon glyphicon-check"></span> Form Validated
+                    </div>
+                </form>
+                
+                <div class="text-center" style="margin-top:10px;">Already have an account? <a href="/login">Sign in</a></div>
             </div>
-            
-            <div class="form-group">
-                <input type="email" class="form-control" name="email" placeholder="Email" 
-                       ng-model="user.email" required>
-                <div class="errortext" ng-show="myForm.email.$dirty && myForm.email.$invalid">
-                    <span ng-show="myForm.email.$error.required">Email is required</span>
-                    <span ng-show="myForm.email.$error.email">Invalid email format</span>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <input type="password" class="form-control" name="password" placeholder="Password" 
-                       ng-model="user.password" required>
-                <div class="errortext" ng-show="myForm.password.$dirty && myForm.password.$invalid">
-                    <span ng-show="myForm.password.$error.required">Password is required</span>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <input type="password" class="form-control" name="repassword" placeholder="Re-type Password" 
-                       ng-model="user.repassword" required compare-to="user.password">
-                <div class="errortext" ng-show="myForm.repassword.$dirty && (myForm.repassword.$invalid || user.repassword != user.password)">
-                    <span ng-show="myForm.repassword.$error.required">Re-type password is required</span>
-                    <span ng-show="!myForm.repassword.$error.required && user.repassword != user.password">Password did not match</span>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="terms" ng-model="user.terms" required> 
-                    I accept the <a href="#">Terms of Use</a> & <a href="#">Privacy Policy</a>
-                </label>
-                <div class="errortext" ng-show="myForm.terms.$dirty && myForm.terms.$invalid">
-                    <span ng-show="myForm.terms.$error.required">You must accept the terms</span>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <button type="button" class="btn btn-success btn-lg btn-block" 
-                        ng-disabled="myForm.$invalid || user.repassword != user.password" 
-                        ng-click="submit()">
-                    <span class="glyphicon glyphicon-check"></span> Register Now
-                </button>
-            </div>
-            
-            <div class="alert alert-success text-center" ng-show="valid">
-                <button type="button" class="close" ng-click="close()">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <span class="glyphicon glyphicon-check"></span> Form Validated
-            </div>
-        </form>
-        
-        <div class="text-center">Already have an account? <a href="login.html">Sign in</a></div>
+        </div>
     </div>
     
     <script>
@@ -109,149 +180,20 @@
         app.controller('cntform', function($scope) {
             $scope.valid = false;
             $scope.user = {};
-            
-            $scope.submit = function() {
-                $scope.valid = true;
-                // Here you would typically send the form data to a server
-                console.log('Form submitted:', $scope.user);
-            };
-            
-            $scope.close = function() {
-                $scope.valid = false;
-            };
+            $scope.close = function() { $scope.valid = false; };
         });
         
         // Optional: Add a custom directive for password matching
         app.directive('compareTo', function() {
             return {
                 require: "ngModel",
-                scope: {
-                    otherModelValue: "=compareTo"
-                },
+                scope: { otherModelValue: "=compareTo" },
                 link: function(scope, element, attributes, ngModel) {
-                    ngModel.$validators.compareTo = function(modelValue) {
-                        return modelValue == scope.otherModelValue;
-                    };
-                    
-                    scope.$watch("otherModelValue", function() {
-                        ngModel.$validate();
-                    });
+                    ngModel.$validators.compareTo = function(modelValue) { return modelValue == scope.otherModelValue; };
+                    scope.$watch("otherModelValue", function() { ngModel.$validate(); });
                 }
             };
         });
     </script>
-    
-    <style>
-        body {
-            color: black;
-            background-image: url("https://facts.net/wp-content/uploads/2023/07/12-facts-about-scenery-1689746516.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-            font-family: 'Roboto', sans-serif;
-        }
-        
-        .form-control {
-            height: 40px;
-            box-shadow: none;
-            color: #000000;
-        }
-        
-        .form-control:focus {
-            border-color: #5cb85c;
-        }
-        
-        .form-control, .btn {
-            border-radius: 3px;
-        }
-        
-        .signup-form {
-            width: 400px;
-            margin: 0 auto;
-            padding: 30px 0;
-        }
-        
-        .signup-form h2 {
-            color: black;
-            margin: 0 0 15px;
-            position: relative;
-            text-align: center;
-        }
-        
-        .signup-form h2:before, .signup-form h2:after {
-            content: "";
-            height: 2px;
-            width: 30%;
-            background: black;
-            position: absolute;
-            top: 50%;
-            z-index: 2;
-        }
-        
-        .signup-form h2:before {
-            left: 0;
-        }
-        
-        .signup-form h2:after {
-            right: 0;
-        }
-        
-        .signup-form .hint-text {
-            color: black;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        .signup-form form {
-            color: green;
-            border-radius: 3px;
-            margin-bottom: 15px;
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid white;
-            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-            padding: 30px;
-        }
-        
-        .signup-form .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .signup-form input[type="checkbox"] {
-            margin-top: 3px;
-        }
-        
-        .signup-form .btn {
-            font-size: 16px;
-            font-weight: bold;
-            min-width: 140px;
-            outline: none !important;
-        }
-        
-        .signup-form .row div:first-child {
-            padding-right: 10px;
-        }
-        
-        .signup-form .row div:last-child {
-            padding-left: 10px;
-        }
-        
-        .signup-form a {
-            color: black;
-            text-decoration: underline;
-        }
-        
-        .signup-form a:hover {
-            text-decoration: none;
-        }
-        
-        .signup-form form a {
-            color: #5cb85c;
-            text-decoration: none;
-        }
-        
-        .signup-form form a:hover {
-            text-decoration: underline;
-        }
-    </style>
 </body>
 </html>

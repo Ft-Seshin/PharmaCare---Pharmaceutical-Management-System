@@ -1,257 +1,216 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Pharma Supplier Information</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style> 
-        body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 20px;
-            color: #333;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            padding: 30px;
-        }
-        
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 30px;
-            font-weight: 600;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-        }
-        
-        .input-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 30px;
-        }
-        
-        .input-table td {
-            padding: 15px;
-            border: 1px solid #e0e0e0;
-        }
-        
-        .input-table tr:nth-child(even) {
-            background-color: #f8f9fa;
-        }
-        
-        .input-table tr:hover {
-            background-color: #f1f8fe;
-        }
-        
-        input[type="text"], 
-        input[type="number"],
-        input[type="email"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-            transition: border 0.3s;
-        }
-        
-        input[type="text"]:focus, 
-        input[type="number"]:focus,
-        input[type="email"]:focus {
-            border-color: #3498db;
-            outline: none;
-            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
-        }
-        
-        .dob-inputs {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .dob-inputs input {
-            flex: 1;
-        }
-        
-        button {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 10px 5px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-        
-        button:hover {
-            background-color: #2980b9;
-        }
-        
-        #submit {
-            background-color: #27ae60;
-        }
-        
-        #submit:hover {
-            background-color: #219653;
-        }
-        
-        .button-container {
-            text-align: center;
-        }
-        
-        #mytable {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 30px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        #mytable th {
-            background-color: #3498db;
-            color: white;
-            padding: 12px;
-            text-align: left;
-        }
-        
-        #mytable td {
-            padding: 12px;
-            border: 1px solid #ddd;
-        }
-        
-        #mytable tr:nth-child(even) {
-            background-color: #f8f9fa;
-        }
-        
-        #mytable tr:hover {
-            background-color: #f1f8fe;
-        }
-        
-        .required:after {
-            content: " *";
-            color: #e74c3c;
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            
-            .dob-inputs {
-                flex-direction: column;
-                gap: 5px;
-            }
-            
-            button {
-                width: 100%;
-                margin: 5px 0;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pharma E-Commerce</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    :root{
+        --bg-grad: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+        --card-bg: #ffffff;
+        --text: #0f172a;
+        --muted: #6b7280;
+        --primary: #2563eb;
+        --primary-600: #1d4ed8;
+        --primary-700: #1e40af;
+        --accent: #10b981;
+        --danger: #ef4444;
+        --warning: #f59e0b;
+        --ring: rgba(37, 99, 235, .35);
+        --shadow: 0 10px 25px rgba(0,0,0,.08);
+    }
+    body { background: var(--bg-grad); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 24px; color: var(--text); }
+    .container { max-width: 1150px; margin: 0 auto; background: var(--card-bg); border-radius: 16px; box-shadow: var(--shadow); padding: 28px; border: 1px solid #eef2ff; }
+    h1 { color: #0f172a; text-align: center; margin-bottom: 20px; font-weight: 700; letter-spacing:.2px; }
+
+    /* Navbar */
+    .navbar { display:flex; align-items:center; justify-content:space-between; background: linear-gradient(135deg, #334155, #1f2937); color:#fff; padding:12px 20px; position:sticky; top:0; z-index:100; border-radius: 12px; box-shadow: 0 8px 18px rgba(0,0,0,.18); }
+    .navbar .logo { font-size:20px; font-weight:800; letter-spacing:.3px; }
+    .navbar .icons { display:flex; gap:18px; font-size:20px; align-items:center; }
+    .navbar .icons i { padding:6px 8px; border-radius:8px; transition: all .15s ease; cursor:pointer; }
+    .navbar .icons i:hover { background: rgba(255,255,255,.12); transform: translateY(-1px); }
+    .navbar .icons .cart-count { background:#e11d48; color:white; font-size:12px; padding:2px 6px; border-radius:50%; position: relative; top:-12px; left:-10px; box-shadow: 0 2px 6px rgba(225,29,72,.4); }
+
+    /* Tabs */
+    .tabs { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+    .tabs .tab { position:relative; padding: 10px 16px; border: 1px solid #e5e7eb; background: #f8fafc; color: #111827; border-radius: 10px; cursor: pointer; transition: all .2s ease; }
+    .tabs .tab:hover { transform: translateY(-1px); box-shadow: 0 6px 14px rgba(0,0,0,.06); background:#ffffff; }
+    .tabs .tab.active-tab { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; border-color: transparent; box-shadow: 0 10px 18px rgba(59,130,246,.25); }
+
+    /* Sections */
+    .section { display: none; animation: fadeIn .25s ease; }
+    .section.active { display: block; }
+    @keyframes fadeIn { from {opacity:0; transform: translateY(6px);} to {opacity:1; transform:none;} }
+
+    /* Filters */
+    .filters { display:flex; gap:10px; flex-wrap:wrap; margin: 10px 0; }
+    .filters input, .filters select { padding:10px 12px; border:1px solid #e5e7eb; border-radius:10px; background:#fff; transition: all .15s ease; }
+    .filters input:focus, .filters select:focus { outline:none; border-color: var(--primary); box-shadow: 0 0 0 4px var(--ring); }
+
+    /* Catalog Grid */
+    .catalog-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-top: 12px; }
+    .card { border:1px solid #e5e7eb; border-radius:12px; padding:14px; background: #ffffff; box-shadow: 0 6px 14px rgba(0,0,0,.06); transition: transform .15s ease, box-shadow .15s ease; }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 18px 30px rgba(0,0,0,.12); }
+    .pill { display:inline-block; padding:4px 8px; border-radius:999px; background:#eff6ff; color:#1e3a8a; margin-right:6px; font-size:12px; border:1px solid #dbeafe; }
+    .card img { width: 100%; height: 140px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; }
+    .card h4 { margin: 8px 0; font-weight:700; color:#0f172a; }
+    .card .price { font-weight: 800; color: #059669; }
+
+    /* Inputs & Tables */
+    .input-table, table.list, #tblCart, #tblOrders { width: 100%; border-collapse: separate; border-spacing: 0; background:#fff; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); }
+    .input-table th, table.list th, #tblCart th, #tblOrders th { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; padding: 14px; text-align:left; letter-spacing:.2px; }
+    .input-table td, table.list td, #tblCart td, #tblOrders td { padding: 12px 14px; border-bottom: 1px solid #f1f5f9; }
+    .input-table tr:last-child td, table.list tr:last-child td, #tblCart tr:last-child td, #tblOrders tr:last-child td { border-bottom: 0; }
+    #tblCart tbody tr:hover, #tblOrders tbody tr:hover { background:#f8fafc; }
+
+    /* Buttons */
+    .button { background: var(--primary); color: white; border: none; padding: 10px 14px; border-radius: 10px; cursor: pointer; margin: 5px; font-weight:600; box-shadow: 0 4px 12px rgba(37,99,235,.18); transition: all .15s ease; }
+    .button:hover { background: var(--primary-600); transform: translateY(-1px); box-shadow: 0 10px 18px rgba(37,99,235,.25); }
+    .button.accent { background: var(--accent); box-shadow: 0 4px 12px rgba(16,185,129,.2); }
+    .button.accent:hover { background:#059669; }
+    .button.danger { background: var(--danger); box-shadow: 0 4px 12px rgba(239,68,68,.2); }
+    .button.danger:hover { background:#dc2626; }
+    .button.ghost { background: transparent; color: var(--primary-700); border:1px solid #c7d2fe; }
+    .button.ghost:hover { background:#eef2ff; }
+
+    /* Cart */
+    .cart-summary { text-align:right; margin-top:10px; font-weight:700; font-size: 18px; }
+
+    /* Modal */
+    .modal { display:none; position:fixed; inset:0; background:rgba(2,6,23,.6); backdrop-filter: blur(2px); align-items:center; justify-content:center; padding: 16px; }
+    .modal .content { background:#ffffff; border-radius:14px; padding:20px; max-width:560px; width:100%; box-shadow: 0 24px 40px rgba(0,0,0,.25); border:1px solid #e5e7eb; }
+
+    /* Responsive */
+    @media (max-width: 600px) { .filters { flex-direction: column; } .tabs { flex-direction: column; } .navbar { border-radius: 10px; } }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Pharmaceutical Customer Information</h1>
-        
-        <table class="input-table">
-            <tr>
-                <td class="required">Customer Name</td>
-                <td><input type="text" id="student_name" placeholder="Enter supplier name" required></td>
-            </tr>
-            <tr>
-                <td>Blood Group</td>
-                <td><input type="text" id="blood_group" placeholder="Enter blood group"></td>
-            </tr>
-            <tr>
-                <td class="required">Date of Birth</td>
-                <td>
-                    <div class="dob-inputs">
-                        <input type="number" id="date" placeholder="DD" min="1" max="31" required>
-                        <input type="number" id="month" placeholder="MM" min="1" max="12" required>
-                        <input type="number" id="year" placeholder="YYYY" min="1900" max="2023" required>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="required">Contact No</td>
-                <td><input type="number" id="mobile_number" placeholder="Enter mobile number" required></td>
-            </tr>
-            <tr>
-                <td class="required">Email ID</td>
-                <td><input type="email" id="email" placeholder="Enter email address" required></td>
-            </tr>
-            <tr>
-                <td class="required">City</td>
-                <td><input type="text" id="place_name" placeholder="Enter city" required></td>
-            </tr>
-            <tr>
-                <td colspan="2" class="button-container">
-                    <button type="button" id="submit" name="submitbutton">Submit</button>
-                    <button type="button" class="submit" onclick="location.href='demo1.html'" target="self">Menu</button>
-                </td>
-            </tr>
-        </table>
-        
-        <div id="div1"></div>
-    </div>
 
-    <script>
-        $(document).ready(function () {
-            $("#submit").click(function () { 
-                details = [
-                    {
-                        "student_name": $("#student_name").val(), 
-                        "dob": {
-                            "date": $("#date").val(),
-                            "month": $("#month").val(),
-                            "year": $("#year").val()
-                        },
-                        "blood_group": $("#blood_group").val(), 
-                        "email": $("#email").val(),
-                        "phone": {
-                            "mobile_number": $("#mobile_number").val(),
-                        },
-                        "address": {
-                            "place_name": $("#place_name").val(),
-                        }
-                    }
-                ];
-                
-                var tbl = $("<table/>").attr("id", "mytable");
-                var thead = $("<thead/>").appendTo(tbl);
-                var tr = $("<tr/>").appendTo(thead);
-                
-                $("<th/>").text("Supplier Name").appendTo(tr);
-                $("<th/>").text("Date of Birth").appendTo(tr);
-                $("<th/>").text("Blood Group").appendTo(tr);
-                $("<th/>").text("Email").appendTo(tr);
-                $("<th/>").text("City").appendTo(tr);
-                $("<th/>").text("Contact No").appendTo(tr);
-                
-                var tbody = $("<tbody/>").appendTo(tbl);
-                
-                for (var i = 0; i < details.length; i++) {
-                    var tr = $("<tr/>").appendTo(tbody);
-                    $("<td/>").text(details[i]["student_name"]).appendTo(tr);
-                    $("<td/>").text(details[i]["dob"]["date"] + "/" + details[i]["dob"]["month"] + "/" + details[i]["dob"]["year"]).appendTo(tr);
-                    $("<td/>").text(details[i]["blood_group"]).appendTo(tr);
-                    $("<td/>").text(details[i]["email"]).appendTo(tr);
-                    $("<td/>").text(details[i]["address"]["place_name"]).appendTo(tr);
-                    $("<td/>").text(details[i]["phone"]["mobile_number"]).appendTo(tr);
-                }
-                
-                $("#div1").html(tbl);
-            });
-        }); 
-    </script>
+  <div class="navbar">
+    <div class="logo">💊 PharmaShop</div>
+    <div class="icons">
+      <i class="fa fa-user tab" data-target="#tab-profile"></i>
+      <div style="position:relative;">
+        <i class="fa fa-shopping-cart tab" data-target="#tab-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active-tab" data-target="#tab-home">Home / Catalog</button>
+    <button class="tab" data-target="#tab-cart">Cart & Checkout</button>
+    <button class="tab" data-target="#tab-orders">My Orders</button>
+    <button class="tab" data-target="#tab-profile">Profile</button>
+  </div>
+
+  <div id="tab-home" class="section active">
+    <div class="filters">
+      <input type="text" id="search" placeholder="Search medicines...">
+      <select id="catFilter"><option value="">All Categories</option><option>Tablets</option><option>Syrups</option><option>Injections</option></select>
+    </div>
+    <div class="catalog-grid" id="catalog"></div>
+  </div>
+
+  <div id="tab-cart" class="section">
+    <h2>Your Cart</h2>
+    <table id="tblCart"><thead><tr><th>Medicine</th><th>Qty</th><th>Unit</th><th>Total</th><th>Action</th></tr></thead><tbody></tbody></table>
+    <div class="cart-summary">Grand Total: ₹<span id="grandTotal">0.00</span></div>
+    <button class="button accent" id="btnCheckout">Proceed to Payment</button>
+  </div>
+
+  <div id="tab-orders" class="section">
+    <h2>My Orders</h2>
+    <table id="tblOrders"><thead><tr><th>Order #</th><th>Date</th><th>Items</th><th>Total</th><th>Status</th></tr></thead><tbody></tbody></table>
+  </div>
+
+  <div id="tab-profile" class="section">
+    <h2>My Profile</h2>
+    <input type="text" id="custName" placeholder="Name"><br><br>
+    <input type="text" id="custPhone" placeholder="Phone"><br><br>
+    <input type="text" id="custAddress" placeholder="Address"><br><br>
+    <button class="button" id="saveProfile">Save Profile</button>
+  </div>
+
+  <div id="detailsModal" class="modal">
+    <div class="content">
+      <h3 id="d_name"></h3>
+      <p id="d_desc"></p>
+      <p><b>Dosage:</b> <span id="d_dose"></span></p>
+      <p><b>Price:</b> ₹<span id="d_price"></span></p>
+      <input type="number" id="d_qty" value="1" min="1" style="width:80px;">
+      <button class="button accent" id="d_add">Add to Cart</button>
+      <button class="button ghost" id="d_close">Close</button>
+    </div>
+  </div>
+
+  <script>
+    var cart = [];
+    var orders = [];
+    var customer = { id: 'CUST-' + Math.floor(Math.random()*1e6) };
+    var medicines = [];
+
+    // Tabs
+    $(document).on('click','.tab',function(){ var target=$(this).data('target'); $('.tab').removeClass('active-tab'); $(this).addClass('active-tab'); $('.section').removeClass('active'); $(target).addClass('active'); });
+
+    // Load catalog from API
+    function loadCatalog(){
+      return fetch('/api/products').then(r=>r.json()).then(list=>{ medicines=list.map(p=>({ id:p.id, name:p.name, cat:p.category||'Tablets', price:Number(p.price||0), dose:p.dosage||'As prescribed', desc:p.description||'', img:'https://via.placeholder.com/200x140?text='+encodeURIComponent(p.name), supplierId:p.supplierId||'SUP1' })); renderCatalog(); });
+    }
+
+    function renderCatalog(){
+      var q=$('#search').val().toLowerCase(); var cat=$('#catFilter').val(); var grid=$('#catalog').empty();
+      medicines.filter(m=>(!q||m.name.toLowerCase().includes(q)) && (!cat||m.cat===cat)).forEach(m=>{
+        var card=$(`<div class="card"><img src="${m.img}"><h4>${m.name}</h4><div class="price">₹${m.price.toFixed(2)}</div><button class="button details">Details</button></div>`);
+        card.find('.details').click(()=>openDetails(m)); grid.append(card);
+      });
+    }
+    $('#search,#catFilter').on('input change', renderCatalog);
+
+    // Details modal
+    function openDetails(m){ $('#d_name').text(m.name); $('#d_desc').text(m.desc); $('#d_dose').text(m.dose); $('#d_price').text(m.price.toFixed(2)); $('#d_qty').val(1); $('#detailsModal').fadeIn().data('med',m); }
+    $('#d_close').click(()=>$('#detailsModal').hide());
+    $('#d_add').click(()=>{ var m=$('#detailsModal').data('med'); var q=parseInt($('#d_qty').val()||'1',10); addToCart(m,q); $('#detailsModal').hide(); });
+
+    // Cart
+    function addToCart(m,qty){ var item=cart.find(c=>c.id===m.id); if(item){item.qty+=qty;} else { cart.push({ ...m, qty }); } renderCart(); }
+    function renderCart(){ var tbody=$('#tblCart tbody').empty(); var total=0; cart.forEach((c,i)=>{ total+=c.qty*c.price; tbody.append(`<tr><td>${c.name}</td><td><input type="number" value="${c.qty}" min="1" data-i="${i}" class="cqty"></td><td>₹${c.price.toFixed(2)}</td><td>₹${(c.qty*c.price).toFixed(2)}</td><td><button class="button remove" data-i="${i}">Remove</button></td></tr>`); }); $('#grandTotal').text(total.toFixed(2)); $('#cartCount').text(cart.length); }
+    $(document).on('input','.cqty',function(){ cart[this.dataset.i].qty=parseInt(this.value)||1; renderCart(); });
+    $(document).on('click','.remove',function(){ cart.splice(this.dataset.i,1); renderCart(); });
+
+    // Checkout -> create order + invoice via API
+    function createOrder(){
+      var items = cart.map(c=>({ productId:c.id, name:c.name, qty:c.qty, unitPrice:c.price, supplierId:c.supplierId }));
+      var total = Number($('#grandTotal').text());
+      // Choose supplier of first item for simplicity
+      var supplierId = items[0] ? items[0].supplierId : 'SUP1';
+      return fetch('/api/orders', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ customerId: customer.id, supplierId, items, total }) }).then(r=>r.json());
+    }
+    function createInvoice(order){
+      return fetch('/api/invoices', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ orderId: order.id, customerId: customer.id, supplierId: order.supplierId || 'SUP1', amount: order.total, status: 'Paid' }) }).then(r=>r.json());
+    }
+    $('#btnCheckout').click(async()=>{
+      if(cart.length===0){alert('Cart is empty!');return;}
+      try {
+        const order = await createOrder();
+        await createInvoice(order);
+        cart=[]; renderCart();
+        await loadOrders();
+        alert('Order placed and payment recorded!');
+      } catch(e){ alert('Checkout failed'); }
+    });
+
+    // Orders (from API)
+    function loadOrders(){ return fetch('/api/orders?customerId='+encodeURIComponent(customer.id)).then(r=>r.json()).then(list=>{ orders=list; renderOrders(); }); }
+    function renderOrders(){ var tbody=$('#tblOrders tbody').empty(); orders.forEach(o=>{ var items=(o.items||[]).map(i=> i.name+' x'+i.qty).join(', '); tbody.append(`<tr><td>${o.id}</td><td>${o.date}</td><td>${items}</td><td>₹${Number(o.total||0).toFixed(2)}</td><td>${o.status}</td></tr>`); }); }
+
+    // Profile
+    $('#saveProfile').click(()=>{ customer.name=$('#custName').val(); customer.phone=$('#custPhone').val(); customer.address=$('#custAddress').val(); alert('Profile saved!'); });
+
+    // Init
+    (async function init(){ await loadCatalog(); renderCart(); await loadOrders(); })();
+  </script>
 </body>
 </html>

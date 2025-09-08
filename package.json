@@ -1,0 +1,33 @@
+{
+  "name": "pharmacare---pharmaceutical-management-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "passport-config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ft-Seshin/PharmaCare---Pharmaceutical-Management-System.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Ft-Seshin/PharmaCare---Pharmaceutical-Management-System/issues"
+  },
+  "homepage": "https://github.com/Ft-Seshin/PharmaCare---Pharmaceutical-Management-System#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.2.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.18.2",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0"
+  }
+}

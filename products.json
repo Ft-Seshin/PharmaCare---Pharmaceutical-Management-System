@@ -1,0 +1,41 @@
+[
+  {
+    "id": "P1001",
+    "name": "Paracetamol 500mg",
+    "price": 1.5,
+    "stock": 120,
+    "moq": 1,
+    "category": "Tablets",
+    "brand": "MediCure",
+    "supplierId": "SUP1",
+    "expiry": "2026-12-31",
+    "description": "Pain reliever and fever reducer.",
+    "dosage": "1-2 tablets, up to 3 times daily"
+  },
+  {
+    "id": "P1002",
+    "name": "Cough Syrup",
+    "price": 3.8,
+    "stock": 60,
+    "moq": 1,
+    "category": "Syrups",
+    "brand": "CoughEase",
+    "supplierId": "SUP1",
+    "expiry": "2026-06-30",
+    "description": "Soothing syrup for dry and productive cough.",
+    "dosage": "2 teaspoons, 2-3 times daily"
+  },
+  {
+    "id": "P1003",
+    "name": "Insulin Injection",
+    "price": 15.0,
+    "stock": 30,
+    "moq": 1,
+    "category": "Injections",
+    "brand": "GlucoCare",
+    "supplierId": "SUP1",
+    "expiry": "2027-03-31",
+    "description": "Insulin for diabetes management.",
+    "dosage": "As prescribed by physician"
+  }
+]

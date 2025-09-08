@@ -7,287 +7,326 @@
 <title>Supplier Information</title>
 <style> 
 :root {
-  --primary-color: #6a11cb;
-  --secondary-color: #2575fc;
-  --accent-color: #4CAF50;
-  --text-color: #333;
-  --light-text: #fff;
-  --table-header-bg: #4CAF50;
-  --input-border: #ccc;
-  --input-focus: #6a11cb;
+  --bg-grad: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);
+  --card-bg: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --primary: #2563eb;
+  --primary-600: #1d4ed8;
+  --accent: #10b981;
+  --danger: #ef4444;
+  --ring: rgba(37, 99, 235, .35);
+  --shadow: 0 10px 25px rgba(0,0,0,.08);
 }
 
 body {
-  background: white;
+  background: var(--bg-grad);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: var(--text-color);
+  color: var(--text);
   margin: 0;
-  padding: 20px;
+  padding: 24px;
   min-height: 100vh;
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1150px;
   margin: 0 auto;
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  background-color: var(--card-bg);
+  padding: 28px;
+  border-radius: 16px;
+  border: 1px solid #eef2ff;
+  box-shadow: var(--shadow);
 }
 
 h1 {
   text-align: center;
-  color: var(--light-text);
-  margin-bottom: 30px;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  color: #0f172a;
+  margin-bottom: 20px;
+  letter-spacing: .2px;
 }
 
-.input-form {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 30px;
-  background-color: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+/* Tabs */
+.tabs { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:16px; }
+.tabs .tablink { position:relative; padding:10px 16px; border:1px solid #e5e7eb; background:#f8fafc; color:#111827; border-radius:10px; cursor:pointer; transition:all .2s ease; }
+.tabs .tablink:hover { transform: translateY(-1px); box-shadow: 0 6px 14px rgba(0,0,0,.06); background:#ffffff; }
+.tabs .tablink.active-tab { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color:#fff; border-color:transparent; box-shadow: 0 10px 18px rgba(59,130,246,.25); }
 
-.input-form td, .input-form th {
-  padding: 15px;
-  border: 1px solid #ddd;
-}
+/* Tables */
+.input-form, #tblProducts, #tblOrders, #tblInvoices { width:100%; border-collapse:separate; border-spacing:0; background:#fff; border-radius:12px; overflow:hidden; box-shadow: var(--shadow); }
+.input-form th, #tblProducts th, #tblOrders th, #tblInvoices th { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color:#fff; padding:14px; text-align:left; letter-spacing:.2px; }
+.input-form td, #tblProducts td, #tblOrders td, #tblInvoices td { padding:12px 14px; border-bottom:1px solid #f1f5f9; }
+.input-form tr:last-child td, #tblProducts tr:last-child td, #tblOrders tr:last-child td, #tblInvoices tr:last-child td { border-bottom:0; }
+#tblProducts tbody tr:hover, #tblOrders tbody tr:hover, #tblInvoices tbody tr:hover { background:#f8fafc; }
 
-.input-form tr:nth-child(even) {
-  background-color: #f8f9fa;
+/* Inputs */
+input[type="text"], input[type="number"], input[type="date"], input[type="tel"], select {
+  width: 100%; padding: 10px 12px; border:1px solid #e5e7eb; border-radius:10px; background:#fff; transition: all .15s ease; color: var(--text);
 }
+input:focus, select:focus { outline:none; border-color: var(--primary); box-shadow: 0 0 0 4px var(--ring); }
 
-.input-form tr:hover {
-  background-color: #f1f1f1;
-}
+/* Buttons */
+.button-group { display:flex; gap:10px; flex-wrap:wrap; }
+button, input[type="button"] { padding:10px 14px; border:none; border-radius:10px; background: var(--primary); color:#fff; font-weight:600; cursor:pointer; transition: all .15s ease; box-shadow: 0 4px 12px rgba(37,99,235,.18); }
+button:hover, input[type="button"]:hover { background: var(--primary-600); transform: translateY(-1px); box-shadow: 0 10px 18px rgba(37,99,235,.25); }
+input[type="button"].accent { background: var(--accent); box-shadow: 0 4px 12px rgba(16,185,129,.2); }
+input[type="button"].accent:hover { background:#059669; }
+input[type="button"].danger, button.danger { background: var(--danger); box-shadow: 0 4px 12px rgba(239,68,68,.2); }
+input[type="button"].danger:hover { background:#dc2626; }
 
-.input-form th {
-  background-color: var(--table-header-bg);
-  color: white;
-  font-weight: 600;
-}
-
-input[type="text"], 
-input[type="number"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid var(--input-border);
-  border-radius: 4px;
-  box-sizing: border-box;
-  transition: border 0.3s;
-}
-
-input[type="text"]:focus, 
-input[type="number"]:focus {
-  border-color: var(--input-focus);
-  outline: none;
-  box-shadow: 0 0 5px rgba(106, 17, 203, 0.3);
-}
-
-.button-group {
-  display: flex;
-  gap: 10px;
-}
-
-input[type="button"] {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s;
-}
-
-#submit {
-  background-color: var(--accent-color);
-  color: white;
-}
-
-#submit:hover {
-  background-color: #45a049;
-  transform: translateY(-2px);
-}
-
-.submit {
-  background-color: #2575fc;
-  color: white;
-}
-
-.submit:hover {
-  background-color: #1a5cb8;
-  transform: translateY(-2px);
-}
-
-#div1 {
-  margin-top: 30px;
-  overflow-x: auto;
-}
-
-#mytable {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  background-color: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-#mytable th {
-  background-color: var(--table-header-bg);
-  color: white;
-  padding: 12px;
-  text-align: left;
-}
-
-#mytable td {
-  padding: 12px;
-  border: 1px solid #ddd;
-}
-
-#mytable tr:nth-child(even) {
-  background-color: #f8f9fa;
-}
-
-#mytable tr:hover {
-  background-color: #f1f1f1;
-}
-
-.dob-inputs {
-  display: flex;
-  gap: 5px;
-}
-
-.dob-inputs input {
-  flex: 1;
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding: 15px;
-  }
-  
-  .input-form td, .input-form th {
-    padding: 10px;
-  }
-  
-  .button-group {
-    flex-direction: column;
-  }
-  
-  .dob-inputs {
-    flex-direction: column;
-    gap: 5px;
-  }
-}
+/* Utilities */
+#div1 { margin-top: 30px; overflow-x: auto; }
+@media (max-width: 768px) { .container { padding: 16px; } .button-group { flex-direction:column; } }
 </style>
 </head>
 <body>
 <div class="container">
-    <h1 style="color: black;">Supplier Info</h1>
-  
-  <table class="input-form">
-    <tr>
-      <th width="30%">Supplier Name</th>
-      <td width="70%"><input type="text" id="student_name" placeholder="Enter the name" required></td>
-    </tr>
-    <tr>
-      <th>Blood Group</th>
-      <td><input type="text" id="blood_group" placeholder="Enter Blood group" required></td>
-    </tr>
-    <tr>
-      <th>Date of Birth</th>
-      <td>
-        <div class="dob-inputs">
-          <input type="number" id="date" placeholder="Date" min="1" max="31" required>
-          <input type="number" id="month" placeholder="Month" min="1" max="12" required>
-          <input type="number" id="year" placeholder="Year" min="1900" max="2100" required>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <th>Contact No</th>
-      <td><input type="number" id="mobile_number" placeholder="Enter mobile number" required></td>
-    </tr>
-    <tr>
-      <th>Email ID</th>
-      <td><input type="text" id="email" placeholder="Enter the email" required></td>
-    </tr>
-    <tr>
-      <th>City</th>
-      <td><input type="text" id="place_name" placeholder="Enter the city" required></td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <div class="button-group">
-          <input type="button" value="Submit" id="submit" name="submitbutton">
-          <input type="button" class="submit" onclick="location.href='demo1.html'" value="Menu">
-        </div>
-      </td>
-    </tr>
-  </table>
-  
-  <p id="display"></p>
-  <div id="div1"></div>
+  <h1>Supplier Info</h1>
+
+  <div class="tabs">
+    <button class="tablink active-tab" data-tab="tab-basic">Basic Info</button>
+    <button class="tablink" data-tab="tab-products">Products Supplied</button>
+    <button class="tablink" data-tab="tab-orders">Purchase Orders</button>
+    <button class="tablink" data-tab="tab-invoices">Payments / Invoices</button>
+  </div>
+
+  <div id="tab-basic" class="tabcontent">
+    <table class="input-form">
+      <tr>
+        <th width="30%">Supplier Name</th>
+        <td width="70%"><input type="text" id="supplier_name" placeholder="Enter supplier name" required></td>
+      </tr>
+      <tr>
+        <th>Contact</th>
+        <td><input type="tel" id="supplier_contact" placeholder="10-digit phone number" maxlength="10" inputmode="numeric" pattern="[0-9]{10}" required></td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td><input type="text" id="supplier_address" placeholder="Street, City, State" required></td>
+      </tr>
+      <tr>
+        <th>License / Tax ID</th>
+        <td><input type="text" id="supplier_taxid" placeholder="e.g., GST/Tax ID" required></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div class="button-group">
+            <input type="button" value="Add supplier" id="btnAddSupplier" class="accent">
+            <input type="button" class="submit" value="Edit details" id="btnEditSupplier">
+            <input type="button" value="Delete supplier" id="btnDelSupplier" class="danger">
+          </div>
+        </td>
+      </tr>
+    </table>
+    <div id="supplierSummary"></div>
+  </div>
+
+  <div id="tab-products" class="tabcontent" style="display:none;">
+    <div class="button-group" style="margin-bottom:10px;">
+      <input type="text" id="prod_name" placeholder="Product name">
+      <input type="number" id="prod_price" placeholder="Price" min="0">
+      <input type="number" id="prod_stock" placeholder="Stock" min="0">
+      <input type="number" id="prod_moq" placeholder="Min order qty" min="0">
+      <input type="date" id="prod_expiry" placeholder="Expiry">
+      <input type="button" value="Add Product" id="btnAddProduct" class="accent">
+      <input type="button" value="Clear products" id="btnClearProducts" class="danger">
+    </div>
+    <table id="tblProducts">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Min Order Qty</th>
+          <th>Expiry</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <div id="tab-orders" class="tabcontent" style="display:none;">
+    <div class="button-group" style="margin-bottom:10px;">
+      <input type="button" value="Refresh orders" id="btnRefreshOrders" class="accent">
+    </div>
+    <table id="tblOrders">
+      <thead>
+        <tr>
+          <th>Order #</th>
+          <th>Date</th>
+          <th>Items</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <div id="tab-invoices" class="tabcontent" style="display:none;">
+    <div class="button-group" style="margin-bottom:10px;">
+      <input type="button" value="Refresh invoices" id="btnRefreshInvoices" class="accent">
+    </div>
+    <table id="tblInvoices">
+      <thead>
+        <tr>
+          <th>Invoice #</th>
+          <th>Date</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
 </div>
 
 <script>
-$(document).ready(function () {
-  $("#submit").click(function () { 
-    details = [
-      {
-        "student_name": $("#student_name").val(), 
-        "dob": {
-          "date": $("#date").val(),
-          "month": $("#month").val(),
-          "year": $("#year").val()
-        },
-        "blood_group": $("#blood_group").val(), 
-        "email": $("#email").val(),
-        "phone": {
-          "mobile_number": $("#mobile_number").val(),
-        },
-        "address": {
-          "place_name": $("#place_name").val(),
-        }
-      }
-    ];
-    
-    // Create table if it doesn't exist
-    if ($("#mytable").length === 0) {
-      var tbl = $("<table/>").attr("id", "mytable");
-      var header = `<thead><tr>
-        <th>Supplier Name</th>
-        <th>Date of Birth</th>
-        <th>Blood Group</th>
-        <th>Email</th>
-        <th>City</th>
-        <th>Contact No</th>
-      </tr></thead><tbody></tbody>`;
-      tbl.append(header);
-      $("#div1").append(tbl);
-    }
-    
-    // Add new row to table body
-    var row = `<tr>
-      <td>${details[0]["student_name"]}</td>
-      <td>${details[0]["dob"]["date"]}/${details[0]["dob"]["month"]}/${details[0]["dob"]["year"]}</td>
-      <td>${details[0]["blood_group"]}</td>
-      <td>${details[0]["email"]}</td>
-      <td>${details[0]["address"]["place_name"]}</td>
-      <td>${details[0]["phone"]["mobile_number"]}</td>
-    </tr>`;
-    
-    $("#mytable tbody").append(row);
-    
-    // Clear form inputs
-    $("input[type='text'], input[type='number']").val("");
+// State (server-backed)
+var supplier = null;
+var products = [];
+var orders = [];
+var invoices = [];
+
+function getSupplierId(){
+  // Derive a stable supplier id from name or default
+  var name = (supplier && supplier.name) ? supplier.name.trim().toLowerCase() : 'SUP1';
+  return (name ? name.replace(/\s+/g,'_') : 'SUP1');
+}
+
+// Tabs behavior
+$(document).on('click', '.tablink', function(){
+  var tab = $(this).data('tab');
+  $('.tabcontent').hide();
+  $('#' + tab).show();
+});
+
+// Toggle active tab visuals
+$(document).on('click', '.tablink', function(){
+  $('.tablink').removeClass('active-tab');
+  $(this).addClass('active-tab');
+});
+
+function renderSupplierSummary(){
+  if (!supplier) { $('#supplierSummary').html(''); return; }
+  var html = '<table class="input-form"><tr><th colspan="2">Current Supplier</th></tr>' +
+    '<tr><td><b>Name</b></td><td>' + supplier.name + '</td></tr>' +
+    '<tr><td><b>Contact</b></td><td>' + supplier.contact + '</td></tr>' +
+    '<tr><td><b>Address</b></td><td>' + supplier.address + '</td></tr>' +
+    '<tr><td><b>License/Tax ID</b></td><td>' + supplier.taxId + '</td></tr></table>';
+  $('#supplierSummary').html(html);
+}
+
+// --- Products API ---
+function loadProducts(){
+  return fetch('/api/products').then(r=>r.json()).then(list=>{ products=list; refreshProductsTable(); });
+}
+function addProduct(){
+  var body = {
+    name: $('#prod_name').val().trim(),
+    price: parseFloat($('#prod_price').val()||'0'),
+    stock: parseInt($('#prod_stock').val()||'0',10),
+    moq: parseInt($('#prod_moq').val()||'0',10),
+    expiry: $('#prod_expiry').val(),
+    supplierId: getSupplierId()
+  };
+  if(!body.name) return;
+  return fetch('/api/products', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)})
+    .then(r=>r.json()).then(()=>{ $('#prod_name,#prod_price,#prod_stock,#prod_moq,#prod_expiry').val(''); return loadProducts(); });
+}
+function deleteProduct(id){
+  return fetch('/api/products/'+encodeURIComponent(id), {method:'DELETE'})
+    .then(()=> loadProducts());
+}
+
+function refreshProductsTable(){
+  var tbody = $('#tblProducts tbody');
+  tbody.empty();
+  products.filter(p=>!supplier || !p.supplierId || p.supplierId===getSupplierId()).forEach(function(p){
+    var row = '<tr>'+
+      '<td>'+p.name+'</td>'+
+      '<td>'+Number(p.price||0).toFixed(2)+'</td>'+
+      '<td>'+Number(p.stock||0)+'</td>'+
+      '<td>'+Number(p.moq||0)+'</td>'+
+      '<td>'+(p.expiry||'')+'</td>'+
+      '<td><button class="btnDelProd" data-id="'+p.id+'">Delete</button></td>'+
+      '</tr>';
+    tbody.append(row);
   });
-}); 
+}
+
+// --- Orders API ---
+function loadOrders(){
+  return fetch('/api/orders?supplierId='+encodeURIComponent(getSupplierId()))
+    .then(r=>r.json()).then(list=>{ orders=list; refreshOrdersTable(); });
+}
+function refreshOrdersTable(){
+  var tbody = $('#tblOrders tbody');
+  tbody.empty();
+  orders.forEach(function(o){
+    var items = (o.items||[]).map(i=> i.name+ ' x'+i.qty).join(', ');
+    var row = '<tr>'+
+      '<td>'+o.id+'</td>'+
+      '<td>'+o.date+'</td>'+
+      '<td>'+items+'</td>'+
+      '<td>'+Number(o.total||0).toFixed(2)+'</td>'+
+      '<td><select class="poStatus" data-id="'+o.id+'">'+['Pending','Shipped','Delivered'].map(function(s){return '<option'+(s===o.status?' selected':'')+'>'+s+'</option>'}).join('')+'</select></td>'+
+      '<td><button class="btnSaveStatus" data-id="'+o.id+'">Save</button></td>'+
+      '</tr>';
+    tbody.append(row);
+  });
+}
+function saveOrderStatus(id, status){
+  return fetch('/api/orders/'+encodeURIComponent(id)+'/status', {method:'PUT', headers:{'Content-Type':'application/json'}, body: JSON.stringify({status})})
+    .then(r=>r.json()).then(()=> loadOrders());
+}
+
+// --- Invoices API ---
+function loadInvoices(){
+  return fetch('/api/invoices?supplierId='+encodeURIComponent(getSupplierId()))
+    .then(r=>r.json()).then(list=>{ invoices=list; refreshInvoicesTable(); });
+}
+function refreshInvoicesTable(){
+  var tbody = $('#tblInvoices tbody');
+  tbody.empty();
+  invoices.forEach(function(inv){
+    var row = '<tr>'+
+      '<td>'+inv.id+'</td>'+
+      '<td>'+inv.date+'</td>'+
+      '<td>'+Number(inv.amount||0).toFixed(2)+'</td>'+
+      '<td>'+inv.status+'</td>'+
+      '<td><button class="markPaid" data-id="'+inv.id+'">Mark Paid</button></td>'+
+      '</tr>';
+    tbody.append(row);
+  });
+}
+function markInvoicePaid(id){
+  return fetch('/api/invoices/'+encodeURIComponent(id)+'/status', {method:'PUT', headers:{'Content-Type':'application/json'}, body: JSON.stringify({status:'Paid'})})
+    .then(()=> loadInvoices());
+}
+
+// UI bindings
+$('#btnAddSupplier').on('click', function(){
+  supplier = { name: $('#supplier_name').val().trim(), contact: $('#supplier_contact').val().trim(), address: $('#supplier_address').val().trim(), taxId: $('#supplier_taxid').val().trim() };
+  renderSupplierSummary(); loadProducts(); loadOrders(); loadInvoices();
+});
+$('#btnEditSupplier').on('click', function(){ if (!supplier) return; $('#supplier_name').val(supplier.name); $('#supplier_contact').val(supplier.contact); $('#supplier_address').val(supplier.address); $('#supplier_taxid').val(supplier.taxId); });
+$('#btnDelSupplier').on('click', function(){ supplier=null; $('#supplier_name,#supplier_contact,#supplier_address,#supplier_taxid').val(''); renderSupplierSummary(); });
+$('#supplier_contact').on('input', function(){ this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10); });
+
+$('#btnAddProduct').on('click', addProduct);
+$(document).on('click', '.btnDelProd', function(){ deleteProduct($(this).data('id')); });
+
+$('#btnRefreshOrders').on('click', loadOrders);
+$(document).on('click', '.btnSaveStatus', function(){ var id=$(this).data('id'); var status = $(this).closest('tr').find('.poStatus').val(); saveOrderStatus(id, status); });
+
+$('#btnRefreshInvoices').on('click', loadInvoices);
+$(document).on('click', '.markPaid', function(){ markInvoicePaid($(this).data('id')); });
+
+// Initialize loads (without supplier filters yet)
+loadProducts();
 </script>
 </body>
 </html>
