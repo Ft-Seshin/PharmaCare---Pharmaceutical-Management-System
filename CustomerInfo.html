@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pharma E-Commerce</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <style>
+    <style> 
     :root{
         --bg-grad: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
         --card-bg: #ffffff;
@@ -84,7 +84,7 @@
 
     /* Responsive */
     @media (max-width: 600px) { .filters { flex-direction: column; } .tabs { flex-direction: column; } .navbar { border-radius: 10px; } }
-  </style>
+    </style>
 </head>
 <body>
 
@@ -132,7 +132,7 @@
     <input type="text" id="custPhone" placeholder="Phone"><br><br>
     <input type="text" id="custAddress" placeholder="Address"><br><br>
     <button class="button" id="saveProfile">Save Profile</button>
-  </div>
+                    </div>
 
   <div id="detailsModal" class="modal">
     <div class="content">
@@ -144,9 +144,9 @@
       <button class="button accent" id="d_add">Add to Cart</button>
       <button class="button ghost" id="d_close">Close</button>
     </div>
-  </div>
+    </div>
 
-  <script>
+    <script>
     var cart = [];
     var orders = [];
     var customer = { id: 'CUST-' + Math.floor(Math.random()*1e6) };
@@ -211,6 +211,6 @@
 
     // Init
     (async function init(){ await loadCatalog(); renderCart(); await loadOrders(); })();
-  </script>
+    </script>
 </body>
 </html>
